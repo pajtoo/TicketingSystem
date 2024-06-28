@@ -2,22 +2,17 @@ package cz.pavel.service;
 
 import cz.pavel.data.QueueContainer;
 import cz.pavel.model.TicketDTO;
-import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Queue;
 
 @Service
 public class TicketServiceImpl implements TicketService {
-    @Autowired
-    private QueueContainer queueContainer;
 
     private Queue<TicketDTO> queue;
 
-    @PostConstruct
-    public void init() {
-        queue = queueContainer.getTicketQueue();
+    public TicketServiceImpl(QueueContainer queueContainer) {
+        this.queue = queueContainer.getTicketQueue();
     }
 
     @Override
